@@ -104,6 +104,12 @@ body {
 }
 
 
+@media (max-width: 768px) {
+    .container.custom-container {
+        padding: 0.5rem; /* Reduced padding for mobile devices */
+    }
+}
+
 
 @media (max-width: 768px) {
     .border-color-1, .border-color-2, .border-color-3, .border-color-4, .border-color-5 {
