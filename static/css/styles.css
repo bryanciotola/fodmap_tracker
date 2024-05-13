@@ -1,0 +1,110 @@
+/* Custom font import */
+
+
+/*
+@font-face {
+    font-family: 'Sud';
+    src: url('../fonts/Sud.woff') format('woff');  
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+
+/* General button styles, adjust color and padding */
+.btn.btn1-style {
+    background-color: #eb4a1b; /* Orange color for button */
+    color: white; /* Makes the font color white */
+}
+
+.btn.btn2-style {
+    background-color: darkblue; /* Dark blue color for button */
+    color: white; /* Makes the font color white */
+}
+
+/* Background color for the body */
+body {
+    background-color: #FF6347; /* Tomato red background color */
+    /*font-family: 'Sud', sans-serif; /* Applies the custom font */
+}
+
+/* Additional classes for colored borders, modify as needed */
+.border-color-1 {
+    background-color: #FF4500; /* Orange red color */
+    padding: 10px;
+}
+
+.border-color-2 {
+    background-color: #20B2AA; /* Light sea green color */
+    padding: 10px;
+}
+
+.border-color-3 {
+    background-color: #FFD700; /* Gold color */
+    padding: 10px;
+}
+
+.border-color-4 {
+    background-color: #4682B4; /* Steel blue color */
+    padding: 10px;
+}
+
+.border-color-5 {
+    background-color: #FFA07A; /* Light salmon color */
+    padding: 10px;
+}
+
+/* Table Styles */
+.table-custom {
+    width: 100%; /* Full-width */
+    background-color: transparent; /* Keeps background transparent */
+    color: #333; /* Dark grey for text for better readability */
+    border-collapse: separate; /* Necessary for border spacing and radius */
+    border-spacing: 0; /* Removes default spacing between borders */
+}
+
+.table-custom thead {
+    background-color: #f8e8c1; /* Soft cream for header */
+}
+
+.table-custom thead th {
+    padding: 12px; /* Adequate padding for table headers */
+    border-bottom: 2px solid #f1d18a; /* Slightly darker cream for a subtle separation */
+    border-top-left-radius: 10px; /* Rounds the top left corner */
+    border-top-right-radius: 10px; /* Rounds the top right corner */
+}
+
+.table-custom tbody tr {
+    background-color: #f9f1e0; /* Light cream for table rows */
+}
+
+.table-custom tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Rounds the bottom left corner of the last row */
+}
+
+.table-custom tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Rounds the bottom right corner of the last row */
+}
+
+.table-custom th, .table-custom td {
+    border: 1px solid #f1d18a; /* Soft cream border for gentle contrast */
+    padding: 8px; /* Comfortable padding inside cells */
+    vertical-align: middle; /* Centers content vertically */
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .border-color-1, .border-color-2, .border-color-3, .border-color-4, .border-color-5 {
+        padding: 5px;  
+    }
+
+    .btn.btn1-style, .btn.btn2-style {
+        padding: 10px 5px; 
+    }
+}
+
+
+
+

@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container-fluid mt-3">
+        <div class="border-color-1">
+            <div class="border-color-2">
+                <div class="border-color-3">
+                    <div class="border-color-4">
+                        <div class="border-color-5">
+                            <div class="container custom-container text-center mt-5 px-6">
+                                <h1 style="color: #FFFDD0">{{ title }}</h1>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-4 col-md-8">
+                                        <input type="text" id="searchInput" class="form-control mb-3" placeholder="search..." onkeyup="searchItems()">
+                                    </div>
+                                </div>
+                                <table class="table table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>food</th>
+                                            <th>deets</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody"></tbody>
+                                </table>
+                                <div class="container mt-4">
+                                    <div class="d-flex justify-content-center">
+                                        <!-- Adding margin-right (mr-2) to the Prev button and margin-left (ml-2) to the Next button -->
+                                        <button onclick="changePage(-1)" class="btn btn-primary mr-2">Prev</button>
+                                        <span id="pageInfo" class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+                                        <button onclick="changePage(1)" class="btn btn-success ml-2">Next</button>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var allItems = JSON.parse('{{ items_json|safe }}');
+        var currentPage = 1;
+        var itemsPerPage = 20;
+        var filteredItems = allItems; // Initialize with all items to manage scope
+    
+        function updateTable(items) {
+            var tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            items.forEach(item => {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.textContent = item.fields.name;
+                cell2.textContent = item.fields.details;
+            });
+        }
+    
+        function searchItems() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            filteredItems = allItems.filter(item =>
+                item.fields.name.toLowerCase().includes(input) || 
+                item.fields.details.toLowerCase().includes(input)
+            );
+            currentPage = 1;
+            paginateItems();
+        }
+    
+        function paginateItems() {
+            var startIndex = (currentPage - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var paginatedItems = filteredItems.slice(startIndex, endIndex);
+            updateTable(paginatedItems);
+            updatePageInfo();
+        }
+    
+        function updatePageInfo() {
+            var totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            document.getElementById('pageInfo').textContent = 'Page ' + currentPage + ' of ' + totalPages;
+        }
+    
+        function changePage(step) {
+            var newPage = currentPage + step;
+            if (newPage > 0 && newPage <= Math.ceil(filteredItems.length / itemsPerPage)) {
+                currentPage = newPage;
+                paginateItems();  // Call paginate to update items with new page index
+            }
+        }
+    
+        // Initial table setup
+        document.addEventListener('DOMContentLoaded', function() {
+            searchItems(); // Populate table initially
+        });
+    </script>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
