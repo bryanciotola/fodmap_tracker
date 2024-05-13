@@ -15,7 +15,7 @@ def all_items(request):
 def limited(request):
     items = FoodItem.objects.filter(category='LIMIT')
     items_json = serialize('json', items, fields=('name', 'details'))  # Specifying fields for clarity
-    paginator = Paginator(items, 20)
+    paginator = Paginator(items, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'diet_manager/category.html', {
@@ -27,7 +27,7 @@ def limited(request):
 def not_allowed(request):
     items = FoodItem.objects.filter(category='NO')
     items_json = serialize('json', items, fields=('name', 'details'))  # Specifying fields for clarity
-    paginator = Paginator(items, 20)
+    paginator = Paginator(items, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'diet_manager/category.html', {
@@ -39,7 +39,7 @@ def not_allowed(request):
 def free(request):
     items = FoodItem.objects.filter(category='FREE')
     items_json = serialize('json', items, fields=('name', 'details'))  # Specifying fields for clarity
-    paginator = Paginator(items, 20)
+    paginator = Paginator(items, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'diet_manager/category.html', {
