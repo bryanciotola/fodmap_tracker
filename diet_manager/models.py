@@ -21,7 +21,7 @@ class FoodItem(models.Model):
         ('FLOURS_STARCHES', 'Flours + Starches')
     ]
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=5, choices=FOOD_CHOICES)
+    category = models.CharField(max_length=10, choices=FOOD_CHOICES)
     food_type = models.CharField(max_length=15, choices=FOOD_TYPE_CHOICES)
     details = models.TextField(blank=True)
 
