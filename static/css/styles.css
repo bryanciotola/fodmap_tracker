@@ -21,6 +21,35 @@
     color: white; /* Makes the font color white */
 }
 
+/* Button styles */
+.btn-prev {
+    background-color: #20B2AA; 
+    color: white;
+}
+
+.btn-next {
+    background-color: #eb4a1b;
+    color: white;
+}
+
+.btn-back {
+    background-color: #4682B4;
+    color: white; /* Black text for contrast */
+}
+
+/* Ensure the buttons stand out */
+.btn-prev, .btn-next, .btn-back {
+    padding: 10px 15px; /* Comfortable padding */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    margin: 0 5px; /* Spacing between buttons */
+}
+
+/* Hover effects for better user experience */
+.btn-prev:hover, .btn-next:hover, .btn-back:hover {
+    opacity: 0.9; /* Slight transparency on hover */
+}
+
+
 /* Background color for the body */
 body {
     background-color: #FF6347; /* Tomato red background color */
@@ -91,16 +120,28 @@ body {
     vertical-align: middle; /* Centers content vertically */
 }
 
-.navbar .nav-link {
-    color: yellow !important; /* Use !important to override any existing styles */
-}
-
+/* Navbar toggler styles */
 .navbar-toggler {
-    border: 1px solid white; /* Add a border to make the button visible */
+    border-color: #ffc107; /* Changing the border color to a yellow shade */
+    background-color: #ffc107; /* Optional: to make the entire button yellow */
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Make the links bold */
+.navbar .nav-link {
+    font-weight: bold; /* Making text bold */
+    color: yellow !important; /* Ensuring the color is yellow */
+}
+
+/* Responsive table styling */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;  /* Enables horizontal scrolling */
+        margin: 15px -15px; /* Optional: Adjusts margin to align with your design */
+    }
 }
 
 

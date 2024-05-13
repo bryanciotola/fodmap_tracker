@@ -4,8 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensuring responsiveness -->
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
@@ -16,37 +17,52 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'all_items' %}">View All</a>
+              <a class="nav-link" href="{% url 'all_items' %}">view all</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'log' %}">Log</a>
+              <a class="nav-link" href="{% url 'log' %}">log</a>
             </li>
           </ul>
         </div>
       </nav>
-    <div class="container custom-container text-center mt-5 px-6">
-        <h1 style="color: #FFFDD0">{{ title }}</h1>
-        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search..." onkeyup="searchItems()">
-        <table class="table table-custom">
-            <thead>
-                <tr>
-                    <th>Food</th>
-                    <th>Details</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                {% for item in items %}
-                <tr>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.details }}</td>
-                    <td>{{ item.get_category_display }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-center mt-3">
-            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+    <div class="container-fluid mt-3">
+        <div class="border-color-1">
+            <div class="border-color-2">
+                <div class="border-color-3">
+                    <div class="border-color-4">
+                        <div class="border-color-5">
+                            <div class="container custom-container text-center mt-5 px-6">
+                                <h1 class="mb-4" style="color: #FFFDD0">{{ title }}</h1>
+                                <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search..." onkeyup="searchItems()">
+                                <table class="table table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>food/details</th>
+                                            <th>category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody">
+                                        {% for item in items %}
+                                        <tr>
+                                            <td>
+                                                {{ item.name }}
+                                                {% if item.details %}
+                                                    <br><small>({{ item.details }})</small>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ item.get_category_display }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -56,7 +72,7 @@
             var table = document.getElementById('tableBody');
             var tr = table.getElementsByTagName('tr');
             for (var i = 0; i < tr.length; i++) {
-                var td = tr[i].getElementsByTagName('td')[0];
+                var td = tr[i].getElementsByTagName('td')[0]; // Adjusted to only search in the first column now
                 if (td) {
                     var txtValue = td.textContent || td.innerText;
                     if (txtValue.toLowerCase().indexOf(input) > -1) {
